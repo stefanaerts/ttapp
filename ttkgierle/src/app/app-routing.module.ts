@@ -2,18 +2,16 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', 
-    loadChildren: './tabnav/tabnav.module#TabnavPageModule' 
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  {
+    path: 'make-appointment',
+    loadChildren: () => import('./make-appointment/make-appointment.module').then( m => m.MakeAppointmentPageModule)
   },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  // },
-  // {
-  //   path: 'products',
-  //   loadChildren: () => import('./products/products.module').then( m => m.ProductsPageModule)
-  // },
- // { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  {
+    path: 'edit-appointment/:id',
+    loadChildren: () => import('./edit-appointment/edit-appointment.module').then( m => m.EditAppointmentPageModule)
+  },
 ];
 
 @NgModule({
